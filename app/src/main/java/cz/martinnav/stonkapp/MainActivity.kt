@@ -54,9 +54,13 @@ class MainActivity : ComponentActivity() {
                             }})
                         }
                         //TODO: Read and parse the data from yahoo finance api
-                        Card (modifier = Modifier.padding(5.dp).fillMaxWidth().fillMaxHeight(0.4f)){
+                        Card (modifier = Modifier
+                            .padding(5.dp)
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.4f)){
                             Text(text = "\$AMD", modifier = Modifier.padding(5.dp))
                             Text(text = "Here will be the chart")
+                            ChartPreview()
                         }
 
                     }
