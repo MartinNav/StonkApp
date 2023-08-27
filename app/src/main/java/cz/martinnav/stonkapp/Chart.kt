@@ -32,7 +32,6 @@ fun Chart(modifier: Modifier,
           xValues: List<Int>,
           yValues: List<Int>,
           points: List<Double>,
-          paddingSpace: Dp,
           verticalStep: Int){
     val pointColor = MaterialTheme.colorScheme.primary
     Box (modifier = modifier
@@ -98,5 +97,5 @@ fun Chart(modifier: Modifier,
 @Composable
 @Preview
 fun ChartPreview(){
-    Chart(modifier = Modifier.fillMaxWidth().height(300.dp), xValues = listOf(0,1,2,3,4,5,6,7,8), yValues = listOf(0,1,2,3,4,5,6,7), points = listOf(1.2,6.3,4.8,1.3,5.2,5.1,6.0,6.3)/*height of values*/, paddingSpace = 5.dp, verticalStep = 1)
+    Chart(modifier = Modifier.fillMaxWidth().height(300.dp), xValues = listOf(0,1,2,3,4,5,6,7,8,9,10,11,12), yValues = listOf(0,1,2,3,4,5,6,7), points = listOf(1.2,6.3,4.8,1.3,5.2,5.1,6.0,6.3,5.4,2.11,3.14,4.2)/*height of values*/,  verticalStep = 1)
 }
