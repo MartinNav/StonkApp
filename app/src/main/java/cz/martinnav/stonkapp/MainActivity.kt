@@ -59,7 +59,6 @@ class MainActivity : ComponentActivity() {
                             .fillMaxWidth()
                             .fillMaxHeight(0.4f)){
                             Text(text = "\$AMD", modifier = Modifier.padding(5.dp))
-                            Text(text = "Here will be the chart")
                             ChartPreview()
                         }
 

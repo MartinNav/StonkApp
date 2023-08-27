@@ -18,6 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.DrawStyle
+import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -34,8 +36,9 @@ fun Chart(modifier: Modifier,
           verticalStep: Int){
     val pointColor = MaterialTheme.colorScheme.primary
     Box (modifier = modifier
-        .background(MaterialTheme.colorScheme.background)
-        .padding(8.dp),
+        //.background(MaterialTheme.colorScheme.background)
+        //.padding(8.dp)
+            ,
 
         contentAlignment = Alignment.Center){
             Canvas(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.inverseOnSurface)){
@@ -44,6 +47,8 @@ fun Chart(modifier: Modifier,
                 var controlPoints2: MutableList<PointF> = mutableListOf()
                 val xAxisS = (size.width +200.0f/*-paddingSpace.toPx()*/)/xValues.size
                 val yaxisS = size.height / yValues.size
+                //to fill from start
+                coordinates.add(PointF((size.width/(xValues.last()-1))*xValues.first(), (size.width/(xValues.last()-1))*xValues.last()))
 
                 for (i in points.indices){
                     //val x1 = xAxisS * yValues[i]
@@ -53,10 +58,16 @@ fun Chart(modifier: Modifier,
                     coordinates.add(PointF(x1,y1))
                     drawCircle(color= pointColor, radius = 5f,center = Offset(x1,y1))
                 }
+                //To fill in correctly
+                coordinates.add(PointF((size.width/(xValues.last()-1))*xValues.last(), (size.width/(xValues.last()-1))*xValues.last()))
+
                 for (i in 1 until coordinates.size){
                     controlPoints1.add(PointF((coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i - 1].y))
                     controlPoints2.add(PointF((coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i].y))
                 }
+
+
+
                 val linePath = Path().apply {
                     reset()
                     moveTo(coordinates.first().x,coordinates.first().y)//May need to change
@@ -68,13 +79,17 @@ fun Chart(modifier: Modifier,
                         )
                     }
                 }
+
+
                 drawPath(
                     linePath,
                     color = pointColor,
-                    style = Stroke(
+                    style = Fill
+                    /*Stroke(
                         width = 5f,
                         cap = StrokeCap.Round
-                    )
+                    )*/
+
                 )
 
             }
